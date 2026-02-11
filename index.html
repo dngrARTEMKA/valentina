@@ -5,69 +5,50 @@
   <title>Будешь моей Валентинкой?</title>
   <style>
     body {
-      background-color: pink;
-      text-align: center;
+      background: linear-gradient(to right, pink, lightyellow);
       font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
     }
     h1 {
+      color: red;
       font-size: 3em;
-      margin-top: 30px;
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
     button {
-      font-size: 1.5em;
       margin: 20px;
       padding: 10px 20px;
+      font-size: 1.2em;
+      background: red;
+      color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
     }
-    #yes { background-color: red; color: white; }
-    #no { background-color: gray; color: white; }
-    img { margin-top: 20px; width: 300px; }
+    #no {
+      background: gray;
+    }
   </style>
 </head>
 <body>
-  <h1>Будешь моей Валентинкой? 💖🥰</h1>
-  <button id="yes">ДА 💖</button>
+  <!-- Заголовок -->
+  <h1>Будешь моей Валентинкой? 💖</h1>
+
+  <!-- Музыка -->
+  <audio autoplay loop>
+    <source src="музло.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Кнопки -->
+  <button id="yes" onclick="window.open('love.html', '_blank')">ДА 💖</button>
   <button id="no">НЕТ 😭</button>
 
-  <!-- 🎵 Место для твоей музыки -->
-  <!-- Замени "music.mp3" на название своего файла -->
-  <audio id="bg-music" src="музло.mp3"></audio>
-
-  
-  <div>
-    <img src="minion-loves.gif" alt="Моя Валентинка GIF">
-  </div>
-
-  <script>
-    const yesBtn = document.getElementById('yes');
-    const noBtn = document.getElementById('no');
-    const music = document.getElementById('bg-music');
-
-    let noClicks = 0;
-    const noTexts = ["Пожалуйста 🥺","Не надо 😫","Любимая 😢","Подумай ещё 💔","Последний шанс 😭"];
-
-    // Запускаем музыку при первом клике на страницу
-    document.body.addEventListener('click', () => {
-      music.play();
-    }, { once: true });
-
-    yesBtn.addEventListener('click', () => {
-      alert("Урааа ❤️❤️❤️❤️❤️\nЯ тебя люблю!");
-      yesBtn.style.display = 'none';
-      noBtn.style.display = 'none';
-    });
-
-    noBtn.addEventListener('click', () => {
-      noClicks++;
-      if (noClicks <= noTexts.length) {
-        noBtn.textContent = noTexts[noClicks-1];
-        yesBtn.style.transform = `scale(${1 + noClicks*0.2})`;
-      } else {
-        noBtn.style.display = 'none';
-      }
-    });
-  </script>
+  <!-- Гифка -->
+  <img src="minion-loves.gif" alt="Love gif">
 </body>
 </html>
