@@ -23,11 +23,9 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      position: relative;
     }
     #no {
       background: gray;
-      position: absolute;
     }
     img {
       display: block;
@@ -40,7 +38,7 @@
   <h1>Будешь моей Валентинкой? 💖</h1>
 
   <!-- Музыка -->
-  <audio id="bgmusic" autoplay loop>
+  <audio id="bgmusic">
     <source src="музло.mp3" type="audio/mpeg">
   </audio>
 
@@ -65,20 +63,12 @@
     ];
     let phraseIndex = 0;
 
-    // При наведении — убегает
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
-      const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
-
     // При нажатии — меняет текст и запускает музыку
     noBtn.addEventListener("click", () => {
       phraseIndex++;
       if (phraseIndex < phrases.length) {
         noBtn.textContent = phrases[phraseIndex];
-        music.play();
+        music.play(); // музыка запускается при клике
       } else {
         // После последнего слова кнопка исчезает
         noBtn.style.display = "none";
