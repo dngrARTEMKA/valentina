@@ -33,7 +33,6 @@
       position: absolute;
       bottom: 0;
       font-size: 2em;
-      color: red;
       animation: floatUp 5s linear forwards;
     }
 
@@ -60,11 +59,15 @@
   <div id="hearts"></div>
 
   <script>
+    const colors = ["red", "deeppink", "hotpink", "purple", "violet", "magenta"];
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.textContent = "❤️";
       heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      heart.style.fontSize = (20 + Math.random() * 30) + "px"; // разные размеры
       heart.style.animationDuration = (3 + Math.random() * 3) + "s";
       document.getElementById("hearts").appendChild(heart);
 
@@ -74,8 +77,8 @@
       }, 5000);
     }
 
-    // создаём сердечки каждые 500 мс
-    setInterval(createHeart, 500);
+    // создаём сердечки чаще (каждые 200 мс)
+    setInterval(createHeart, 200);
   </script>
 </body>
 </html>
