@@ -13,12 +13,6 @@
     h1 {
       color: red;
       font-size: 3em;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
     }
     button {
       margin: 20px;
@@ -29,18 +23,24 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      position: relative;
     }
     #no {
       background: gray;
+      position: absolute;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 300px;
     }
   </style>
 </head>
 <body>
-  <!-- Заголовок -->
   <h1>Будешь моей Валентинкой? 💖</h1>
 
   <!-- Музыка -->
-  <audio autoplay loop>
+  <audio id="bgmusic" autoplay loop>
     <source src="музло.mp3" type="audio/mpeg">
   </audio>
 
@@ -50,5 +50,40 @@
 
   <!-- Гифка -->
   <img src="minion-loves.gif" alt="Love gif">
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const music = document.getElementById("bgmusic");
+
+    // Слова для кнопки "НЕТ"
+    const phrases = [
+      "нет 😭",
+      "в смысле нет?",
+      "уверена?",
+      "ну малышка...",
+      "люблю тебя ❤️"
+    ];
+    let phraseIndex = 0;
+
+    // При наведении — убегает
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
+      const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    // При нажатии — меняет текст и запускает музыку
+    noBtn.addEventListener("click", () => {
+      phraseIndex++;
+      if (phraseIndex < phrases.length) {
+        noBtn.textContent = phrases[phraseIndex];
+        music.play();
+      } else {
+        // После последнего слова кнопка исчезает
+        noBtn.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
