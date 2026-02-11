@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Будешь моей Валентинкой?</title>
+  <style>
+    body {
+      background-color: pink;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 30px;
+    }
+    button {
+      font-size: 1.5em;
+      margin: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #yes { background-color: red; color: white; }
+    #no { background-color: gray; color: white; }
+    img { margin-top: 20px; width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Будешь моей Валентинкой? 💖🥰</h1>
+  <button id="yes">ДА 💖</button>
+  <button id="no">НЕТ 😭</button>
+
+  <!-- 🎵 Место для твоей музыки -->
+  <!-- Замени "music.mp3" на название своего файла -->
+  <audio id="bg-music" src="музло.mp3"></audio>
+
+  
+  <div>
+    <img src="minion-loves.gif" alt="Моя Валентинка GIF">
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const music = document.getElementById('bg-music');
+
+    let noClicks = 0;
+    const noTexts = ["Пожалуйста 🥺","Не надо 😫","Любимая 😢","Подумай ещё 💔","Последний шанс 😭"];
+
+    // Запускаем музыку при первом клике на страницу
+    document.body.addEventListener('click', () => {
+      music.play();
+    }, { once: true });
+
+    yesBtn.addEventListener('click', () => {
+      alert("Урааа ❤️❤️❤️❤️❤️\nЯ тебя люблю!");
+      yesBtn.style.display = 'none';
+      noBtn.style.display = 'none';
+    });
+
+    noBtn.addEventListener('click', () => {
+      noClicks++;
+      if (noClicks <= noTexts.length) {
+        noBtn.textContent = noTexts[noClicks-1];
+        yesBtn.style.transform = `scale(${1 + noClicks*0.2})`;
+      } else {
+        noBtn.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
